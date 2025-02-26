@@ -29,7 +29,7 @@ spring:
     properties:
       sasl:
         jaas:
-          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='X' password='X';
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='BZ4DKPFBOK6X3H6H' password='0L7qAgpo0emX+tHml6HuZXC7B1vU65nxNX4CdH6rI3D+Rcz24P8OzpHZDKMZ59xa';
         mechanism: PLAIN
       security:
         protocol: SASL_SSL
