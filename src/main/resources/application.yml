@@ -1,0 +1,76 @@
+#spring:
+#    profiles:
+#        active: dev
+
+
+#logging:
+#    level:
+#        com:
+#          springboot:
+#             rest:
+#                api: DEBUG
+
+spring:
+  kafka:
+# Required connection configs for Kafka producer, consumer, and admin
+    bootstrap-servers: ${KAFKA_SERVERS}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+        group-id: weekly-sentiment-group
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        properties:
+          spring:
+            json:
+              trusted:
+                packages: com.springboot.rest.api.model
+    properties:
+      sasl:
+        jaas:
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='X' password='X';
+        mechanism: PLAIN
+      security:
+        protocol: SASL_SSL
+      session:
+        timeout:
+          ms: 45000
+    client:
+      id: ccloud-springboot-client-b53d911e-7728-47f8-a1c3-44b38d954564
+
+  redis:
+      host: ${REDIS_HOST}
+      port: 15641
+      password: ${REDIS_PASSWORD}
+  data:
+      mongodb:
+            uri: ${MONGODB_URI}
+            database: journaldb
+            auto-index-creation: true
+  mail:
+       host: smtp.gmail.com  # for outlook smtp.office365.com, yahoo: smpt.mail.yahoo.com
+       port: 587
+       username: ${JAVA_EMAIL}
+       password: ${JAVA_EMAIL_PASSWORD}
+       properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true
+
+server:
+    port: 8080
+    servlet:
+        context-path: /journal
+
+weather:
+    api:
+        key:  ${WEATHER_API_KEY}
+
+
+
+
+
+
