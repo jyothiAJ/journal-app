@@ -40,9 +40,10 @@ spring:
       id: ccloud-springboot-client-b53d911e-7728-47f8-a1c3-44b38d954564
 
   redis:
-      host: ${REDIS_HOST}
-      port: 15641
-      password: ${REDIS_PASSWORD}
+    uri: redis-cli -u redis://default:s8NC5AQV8Mgpn8eF2bCJrR7hIiD79bOT@redis-15803.c305.ap-south-1-1.ec2.redns.redis-cloud.com:15803
+#      host: ${REDIS_HOST}
+#      port: 15641
+#      password: ${REDIS_PASSWORD}
   data:
       mongodb:
             uri: ${MONGODB_URI}
