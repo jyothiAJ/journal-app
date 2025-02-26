@@ -1,31 +1,19 @@
-#spring:
-#    profiles:
-#        active: dev
-
-
-#logging:
-#    level:
-#        com:
-#          springboot:
-#             rest:
-#                api: DEBUG
-
 spring:
   kafka:
-# Required connection configs for Kafka producer, consumer, and admin
-    bootstrap-servers: ${KAFKA_SERVERS}
+    # Required connection configs for Kafka producer, consumer, and admin
+    bootstrap-servers: pkc-l7pr2.ap-south-1.aws.confluent.cloud:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
-        group-id: weekly-sentiment-group
-        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-        properties:
-          spring:
-            json:
-              trusted:
-                packages: com.springboot.rest.api.model
+      group-id: weekly-sentiment-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: com.springboot.rest.api.model
     properties:
       sasl:
         jaas:
@@ -41,37 +29,30 @@ spring:
 
   redis:
     uri: redis-cli -u redis://default:s8NC5AQV8Mgpn8eF2bCJrR7hIiD79bOT@redis-15803.c305.ap-south-1-1.ec2.redns.redis-cloud.com:15803
-#      host: ${REDIS_HOST}
-#      port: 15641
-#      password: ${REDIS_PASSWORD}
+  #      host: localhost
+  #      port: 6379
   data:
-      mongodb:
-            uri: ${MONGODB_URI}
-            database: journaldb
-            auto-index-creation: true
+    mongodb:
+      uri: mongodb+srv://akshayajyothi17:57o68Nl1FNm2p6Bw@cluster0.tcevr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: journaldb
+      auto-index-creation: true
   mail:
-       host: smtp.gmail.com  # for outlook smtp.office365.com, yahoo: smpt.mail.yahoo.com
-       port: 587
-       username: ${JAVA_EMAIL}
-       password: ${JAVA_EMAIL_PASSWORD}
-       properties:
-            mail:
-                smtp:
-                    auth: true
-                    starttls:
-                        enable: true
+    host: smtp.gmail.com  # for outlook smtp.office365.com, yahoo: smpt.mail.yahoo.com
+    port: 587
+    username: akshayajyothi17@gmail.com
+    password: uswy xyab qrvf afgv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 server:
-    port: 8080
-    servlet:
-        context-path: /journal
+  port: 8080
+  servlet:
+    context-path: /journal
 
 weather:
-    api:
-        key:  ${WEATHER_API_KEY}
-
-
-
-
-
-
+  api:
+    key: 4822da575248b639920fc0f0161f44a6
